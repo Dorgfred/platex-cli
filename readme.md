@@ -95,7 +95,7 @@ $ platex -m 65-BT-19
 Clone the repository:
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/platex.git
+git clone https://github.com/Dorgfred/platex.git
 
 cd platex
 ```
