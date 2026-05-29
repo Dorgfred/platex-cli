@@ -14,13 +14,15 @@ Please include the following information:
 
 ## Security Considerations
 
-### Credentials Management
+### Token Management
 
-PLATEX stores credentials in `credenciais.txt`:
+PLATEX stores a Bearer token in `token.txt`:
 - This file is **never** committed to Git (see `.gitignore`)
-- Contains sensitive API keys and tokens
+- Contains a session token captured automatically via headless browser
 - Should be treated as confidential
 - **Never share this file publicly**
+
+The token is short-lived and refreshed automatically when it expires.
 
 ### Third-party Dependencies
 
@@ -28,28 +30,28 @@ PLATEX uses several npm packages:
 - `playwright` - Browser automation
 - `axios` - HTTP client
 - `commander` - CLI parsing
-- `chalk`, `figlet`, `gradient-string`, `boxen`, `ora` - Terminal UI
+- `chalk`, `boxen`, `ora`, `cli-table3` - Terminal UI
 
 All dependencies are regularly reviewed and kept up-to-date.
 
 ### Best Practices
 
-1. **Run on trusted networks only** - Credential generation requires internet access
-2. **Don't commit credentials** - Ensure `credenciais.txt` stays in `.gitignore`
+1. **Run on trusted networks only** - Token generation requires internet access
+2. **Don't commit the token** - Ensure `token.txt` stays in `.gitignore`
 3. **Keep Node.js updated** - Use Node.js 18 or higher
 4. **Update dependencies regularly** - Run `npm update` periodically
 
 ### API Endpoint Security
 
-PLATEX communicates with `https://api.verificarmatricula.pt` over HTTPS.
+PLATEX communicates with `https://api.infomatricula.pt` over HTTPS.
 
 - All requests are encrypted in transit
-- API keys are sent in custom headers
+- Bearer tokens are sent in the `Authorization` header
 - Never modify the API endpoint to use HTTP
 
 ## Known Limitations
 
-- Credentials may expire and require regeneration
+- Tokens expire and require automatic or manual regeneration
 - Playwright requires Chromium browser
 - Depends on external API availability
 

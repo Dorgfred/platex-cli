@@ -16,9 +16,9 @@
 
 PLATEX is a terminal-based vehicle lookup CLI focused on Portuguese license plates.
 
-Built with a minimal underground aesthetic, automatic credential recovery, and a clean terminal interface designed for fast OSINT-style workflows.
+Built with a minimal underground aesthetic, automatic token recovery, and a clean terminal interface designed for fast OSINT-style workflows.
 
-The tool automatically refreshes expired credentials and renders vehicle data directly in the terminal using structured tables and visual blocks.
+The tool automatically refreshes expired tokens and renders vehicle data directly in the terminal using structured tables and visual blocks.
 
 ---
 
@@ -26,12 +26,12 @@ The tool automatically refreshes expired credentials and renders vehicle data di
 
 * Portuguese vehicle lookup
 * Automatic token refresh
-* Asset blocking for faster credential capture
+* Asset blocking for faster token capture
 * Anti-detection browser fingerprinting
 * Terminal-based interface
 * Structured response rendering with 24 vehicle fields
 * Raw payload inspection mode
-* Retry system for expired credentials
+* Retry system for expired tokens
 * Rate limit and 404 handling
 * Lightweight and fast workflow
 * Minimal underground visual style
@@ -154,11 +154,11 @@ platex -m 65-BT-19
 
 PLATEX performs three main operations:
 
-1. Captures valid session credentials automatically via a headless Chromium browser
-2. Sends authenticated requests to the vehicle endpoint
+1. Captures a valid Bearer token automatically via a headless Chromium browser
+2. Sends authenticated requests to the vehicle endpoint at `api.infomatricula.pt`
 3. Renders formatted output directly in the terminal
 
-During credential capture, the browser blocks images, fonts, and media to speed up the process, and suppresses the `webdriver` property to avoid bot detection.
+During token capture, the browser blocks images, fonts, and media to speed up the process, and suppresses the `webdriver` property to avoid bot detection. The token is intercepted from the outgoing `Authorization` header and saved to `token.txt`.
 
 If a request returns `401` or `403`, the tool automatically refreshes the token and retries up to 2 times. If a `429` is returned, the tool exits and suggests switching IP or proxy.
 
@@ -229,12 +229,14 @@ Only non-empty fields are displayed.
 
 ```bash
 .
-├── platex.js
-├── gerar_token.js
-├── token.txt
+├── platex.js          # Main CLI application
+├── gerar_token.js     # Token generator (headless browser)
+├── token.txt          # Captured Bearer token — auto-generated, not committed
 ├── package.json
 └── README.md
 ```
+
+> `token.txt` is generated automatically on the first run and is listed in `.gitignore`. It will not be present in a freshly cloned repository.
 
 ---
 
@@ -248,9 +250,9 @@ Only non-empty fields are displayed.
 
 ## Notes
 
-The first execution may take slightly longer while Playwright initializes browser resources.
+The first execution may take slightly longer while Playwright initializes browser resources and captures a fresh token.
 
-Credential generation is fully automatic. The captured token is stored in `token.txt` and reused across requests until it expires.
+The token is stored in `token.txt` and reused across requests until it expires. Renewal is fully automatic.
 
 ---
 

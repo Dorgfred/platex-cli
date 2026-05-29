@@ -8,7 +8,7 @@
   },
   "files": [
     "platex.js",
-    "pegar_token.js"
+    "gerar_token.js"
   ],
   "scripts": {
     "start": "node platex.js"

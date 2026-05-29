@@ -30,7 +30,7 @@ If applicable, add screenshots or error logs.
 
 - OS: [e.g. Windows, macOS, Linux]
 - Node version: [e.g. 18.0.0]
-- PLATEX version: [e.g. 2.0.0]
+- PLATEX version: [e.g. 2.0.1]
 
 ## Additional context
 

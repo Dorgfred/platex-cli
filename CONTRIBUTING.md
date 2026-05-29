@@ -47,13 +47,12 @@ When creating an enhancement suggestion, please include:
 3. Install dependencies:
    ```bash
    npm install
-   npx playwright install
+   npx playwright install chromium
    ```
 
 4. Make your changes
 5. Test your changes locally:
    ```bash
-   npm start
    node platex.js -m 12-AB-34
    ```
 
