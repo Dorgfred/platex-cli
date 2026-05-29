@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  vehicle intelligence from the shadows
+  vehicle intelligence system for portugueses plates
 </p>
 
 ---
